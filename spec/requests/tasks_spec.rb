@@ -22,7 +22,7 @@ RSpec.describe 'Taks API', type: :request do
 
 	# Test suite for GET /tasks/:id
 	describe 'GET /tasks/:id' do
-		before { get "tasks/#{task_id}" }
+		before { get "/tasks/#{task_id}" }
 
 		context 'when the record exists' do
 			it 'returns the task' do
@@ -42,8 +42,8 @@ RSpec.describe 'Taks API', type: :request do
 				expect(response).to have_http_status(400)
 			end
 
-			it 'returns a note found message' do
-				expect(response.body).to match(/Couldn't find task/)
+			it 'returns a not found message' do
+				expect(response.body).to match(/Couldn't find Task with 'id'=#{task_id}/)
 			end
 		end
 	end
@@ -55,7 +55,7 @@ RSpec.describe 'Taks API', type: :request do
 			current_scheduled_date: '08/27/2017', migration_count: 5, complete: false } }
 
 			context 'when the request is valid' do
-				before { post 'tasks', params: valid_attributes }
+				before { post '/tasks', params: valid_attributes }
 
 				it 'creates a task' do
 					expect(json['name']).to eq('Walk the dog')
@@ -85,7 +85,7 @@ RSpec.describe 'Taks API', type: :request do
 		let(:valid_attributes) { { name: 'Play with the dog' } }
 
 		context 'when the record exists' do
-			before { put "tasks/#{task_id}", params: valid_attributes }
+			before { put "/tasks/#{task_id}", params: valid_attributes }
 
 			it 'updates the record' do
 				expect(response.body).to be_empty

@@ -41,9 +41,6 @@ end
 # [...]
 RSpec.configuration do |config|
   # [...]
-  # add `FactoryGirl` methods
-  config.include FactoryGirl::Syntax::Methods
-
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
@@ -70,6 +67,9 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  # add `FactoryGirl` methods
+  config.include FactoryGirl::Syntax::Methods
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
