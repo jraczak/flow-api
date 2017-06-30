@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
 	# GET /tasks
 	def index
-		@tasks = Tasks.all
+		@tasks = Task.all
 		json_response(@tasks)
 	end
 
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 
 	def task_params
 		#whitelist params
-		params.permit(:name, :note, :current_scheduled_date, :migration_count, :complete)
+		params.permit(:name, :note, :current_scheduled_date, :original_scheduled_date, :migration_count, :complete)
 	end
 
 	def set_task

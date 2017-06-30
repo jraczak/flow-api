@@ -3,5 +3,6 @@ FactoryGirl.define do
 		email { Faker::Internet.email }
 		firebase_id { Faker::Lorem.characters(30) } 
 		name { Faker::Name.name }
+		password 'password'
 	end
 end

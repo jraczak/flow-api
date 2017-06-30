@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Taks API', type: :request do
+RSpec.describe 'Tasks API', type: :request do
 	let!(:tasks) {create_list(:task, 10) }
 	let(:task_id) { tasks.first.id }
 
@@ -39,7 +39,7 @@ RSpec.describe 'Taks API', type: :request do
 			let(:task_id) { 100 }
 
 			it 'returns the status code 404' do
-				expect(response).to have_http_status(400)
+				expect(response).to have_http_status(404)
 			end
 
 			it 'returns a not found message' do
@@ -67,7 +67,8 @@ RSpec.describe 'Taks API', type: :request do
 			end
 
 			context 'when the request is invalid' do
-				before { post '/tasks', params: { name: 'FooBar' } }
+				before { post '/tasks', params: { user_id: 'sdfhj2347892k', local_realm_id: 1, 
+			note: 'A note about walking the dog', migration_count: 5, complete: false } }
 
 				it 'returns status code 422' do
 					expect(response).to have_http_status(422)
@@ -75,7 +76,7 @@ RSpec.describe 'Taks API', type: :request do
 
 				it 'returns a validation failure message' do
 					expect(response.body)
-					.to match(/Validation failed: user_id can't be blank/)
+					.to match(/Validation failed: Name can't be blank, Original scheduled date can't be blank, Current scheduled date can't be blank/)
 				end
 			end
 		end
