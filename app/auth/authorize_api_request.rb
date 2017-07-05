@@ -20,7 +20,7 @@ class AuthorizeApiRequest
 
 		raise(
 			ExceptionHandler::InvalidToken,
-			('#{Message.invalid_token} #{e.message}')
+			("#{Message.invalid_token} #{e.message}")
 			)
 	end
 
@@ -29,9 +29,9 @@ class AuthorizeApiRequest
 	end
 
 	def http_auth_header
-		if headers['Authorization'].present?
-			return headers['Authorization'].split(' ').last
-		end
-		raise(ExceptionHandler::MissingToken, Message.missing_token)
-	end
+    if headers['Authorization'].present?
+      return headers['Authorization'].split(' ').last
+    end
+      raise(ExceptionHandler::MissingToken, Message.missing_token)
+  end
 end
