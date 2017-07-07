@@ -4,9 +4,8 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
-	has_secure_password
 
 	has_many :tasks, dependent: :destroy
 
-	validates_presence_of :name, :email, :password_digest
+	validates_presence_of :name, :email
 end
