@@ -42,7 +42,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 # [...]
-RSpec.configuration do |config|
+RSpec.configure do |config|
   # [...]
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.

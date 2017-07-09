@@ -11,9 +11,10 @@ class TasksController < ApplicationController
 
 	# POST /tasks
 	def create
-		@task = Task.new(task_params)
-		@task.user = current_user
-		@task.save!
+		##@task = Task.new(task_params)
+		##@task.user = current_user
+		##@task.save!
+		@task = current_user.tasks.create!(task_params)
 		json_response(@task, :created)
 	end
 
@@ -27,7 +28,8 @@ class TasksController < ApplicationController
 	# PUT /tasks/:id
 	def update
 		@task.update(task_params)
-		head :no_content
+		# Just return the task anyway so we have access to fresh data
+		json_response(@task)
 	end
 
 	# DELETE /tasks/:id
