@@ -1,20 +1,26 @@
 class TasksController < ApplicationController
 	before_action :set_task, only: [:show, :update, :destroy]
 
+	#before_action :authenticate_user!
+
 	# GET /tasks
 	def index
-		@tasks = Task.all
+		@tasks = policy_scope(Task)
 		json_response(@tasks)
 	end
 
 	# POST /tasks
 	def create
-		@task = Task.create!(task_params)
+		@task = Task.new(task_params)
+		@task.user = current_user
+		@task.save!
 		json_response(@task, :created)
 	end
 
 	# GET /tasks/:id
 	def show
+		puts current_user
+		authorize @task
 		json_response(@task)
 	end
 

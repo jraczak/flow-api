@@ -22,6 +22,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'devise_token_auth'
 gem 'omniauth'
+gem 'pundit'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
