@@ -1,4 +1,4 @@
-class TasksController < ApplicationController
+class Api::TasksController < ApplicationController
 	before_action :set_task, only: [:show, :update, :destroy]
 
 	#before_action :authenticate_user!
@@ -14,7 +14,8 @@ class TasksController < ApplicationController
 		##@task = Task.new(task_params)
 		##@task.user = current_user
 		##@task.save!
-		@task = current_user.tasks.create!(task_params)
+		#@task = current_user.tasks.create!(task_params)
+		@task = current_user.tasks.create!(params[:task])
 		json_response(@task, :created)
 	end
 
