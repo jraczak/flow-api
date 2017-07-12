@@ -15,6 +15,7 @@ class Api::TasksController < ApplicationController
 		##@task.user = current_user
 		##@task.save!
 		#@task = current_user.tasks.create!(task_params)
+		puts params[:task]
 		@task = current_user.tasks.create!(params[:task])
 		json_response(@task, :created)
 	end
