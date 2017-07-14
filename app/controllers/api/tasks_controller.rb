@@ -14,9 +14,9 @@ class Api::TasksController < ApplicationController
 		##@task = Task.new(task_params)
 		##@task.user = current_user
 		##@task.save!
-		#@task = current_user.tasks.create!(task_params)
-		puts params[:task]
-		@task = current_user.tasks.create!(params[:task])
+		@task = current_user.tasks.create!(task_params)
+		#puts params[:task]
+		#@task = current_user.tasks.create!(params[:task])
 		json_response(@task, :created)
 	end
 
@@ -44,7 +44,7 @@ class Api::TasksController < ApplicationController
 
 	def task_params
 		#whitelist params
-		params.permit(:name, :note, :current_scheduled_date, :original_scheduled_date, :migration_count, :complete)
+		params.require(:task).permit(:name, :note, :current_scheduled_date, :original_scheduled_date, :migration_count, :complete)
 	end
 
 	def set_task

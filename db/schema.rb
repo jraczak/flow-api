@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170710210205) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "tasks", force: :cascade do |t|
     t.integer "local_realm_id"
     t.string "name"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170710210205) do
     t.boolean "complete"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -56,4 +59,5 @@ ActiveRecord::Schema.define(version: 20170710210205) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "tasks", "users"
 end
