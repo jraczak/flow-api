@@ -25,6 +25,7 @@ gem 'devise_token_auth'
 gem 'omniauth'
 gem 'pundit'
 gem 'sendgrid-ruby'
+gem 'doorkeeper'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
